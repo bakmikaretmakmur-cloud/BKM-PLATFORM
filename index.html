@@ -1766,6 +1766,8 @@ let DB = {
   expenses:[], // Input Pengeluaran: [{id,date,nominal,tujuan,vendor,sumber,by,ts}]
   staffCost:[], // Staff Cost Weekly: [{id,week,year,month,amount,note,by,ts}]
   bankLedger:[], // Rekening Bank: [{id,date,type:'in'|'out',amount,desc,refId,by,ts}]
+  inventory:{}, // Inventory harian: {outlet:{divisi:{dk:{itemName:{...}}}}}
+  masterItems:{}, // Master item per divisi: {BAR:[],KITCHEN:[],FLOOR:[]}
   settings:{ pins:{ admin:'1234', ops:'5678', purchasing:'9999', finance:'7777' } }
 };
 
@@ -2620,7 +2622,7 @@ function syncBankLedgerFromExpenses() {
   // Tambah yang belum ada
   transferExp.forEach(e=>{
     if(!existingRefIds.has(e.id)){
-      DB.bankLedger.push({id:uid(),date:e.date,type:'out',amount:e.amount||e.nominal,desc:e.tujuan+(e.vendor?' — '+e.vendor:''),refId:e.id,by:e.by,ts:e.ts});
+      DB.bankLedger.push({id:uid(),date:e.date,type:'out',amount:e.nominal||e.amount||0,desc:e.tujuan+(e.vendor?' — '+e.vendor:''),refId:e.id,by:e.by,ts:e.ts});
     }
   });
   // Hapus 'out' yang refId-nya sudah tidak ada di expenses (expense dihapus)
@@ -2630,7 +2632,7 @@ function syncBankLedgerFromExpenses() {
   DB.bankLedger=DB.bankLedger.map(bl=>{
     if(bl.type==='out'&&bl.refId){
       const src=transferExp.find(e=>e.id===bl.refId);
-      if(src) return {...bl,date:src.date,amount:src.amount||src.nominal,desc:src.tujuan+(src.vendor?' — '+src.vendor:'')};
+      if(src) return {...bl,date:src.date,amount:src.nominal||src.amount||0,desc:src.tujuan+(src.vendor?' — '+src.vendor:'')};
     }
     return bl;
   });
@@ -2639,7 +2641,8 @@ function syncBankLedgerFromExpenses() {
 
 function renderBankLedger() {
   const mo=g('bl-month')?.value||thisMonth();
-  syncBankLedgerFromExpenses();
+  // Catatan: syncBankLedgerFromExpenses() TIDAK dipanggil di sini untuk menghindari
+  // duplikasi data — sync hanya terjadi saat expense disimpan/dihapus.
   // Hitung saldo pembuka (semua entri sebelum bulan ini)
   const allSorted=(DB.bankLedger||[]).slice().sort((a,b)=>a.date.localeCompare(b.date)||a.ts-b.ts);
   const moStart=mo+'-01';
@@ -3067,16 +3070,18 @@ document.addEventListener('click',e=>{if(e.target.classList.contains('mbg'))e.ta
 function showToast(msg,dur=3000){const t=g('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur);}
 
 // ══════════════ FIREBASE ══════════════
-let fbDb,fbRef,fbPoRef,fbReady=false,fbWriting=false,fbTimer=null;
+let fbDb,fbRef,fbPoRef,fbReady=false,fbLastWriteTs=0,fbTimer=null;
 function setFbSt(msg,c){const el=g('fb-status');if(!el)return;el.textContent=msg;el.style.color=c==='green'?'var(--green)':c==='red'?'var(--red)':'var(--cream4)';}
 function pushFB(){
   if(!fbReady||!fbRef)return;
   clearTimeout(fbTimer);
   fbTimer=setTimeout(()=>{
-    fbWriting=true; setFbSt('⟳ Menyimpan...','amber');
-    fbRef.set({...DB,_ts:Date.now()})
-      .then(()=>{setFbSt('● Tersimpan','green');setTimeout(()=>{fbWriting=false;},2000);})
-      .catch(e=>{setFbSt('✕ '+e.code,'red');fbWriting=false;});
+    const writeTs=Date.now();
+    fbLastWriteTs=writeTs;
+    setFbSt('⟳ Menyimpan...','amber');
+    fbRef.set({...DB,_ts:writeTs})
+      .then(()=>{setFbSt('● Tersimpan','green');})
+      .catch(e=>{setFbSt('✕ '+e.code,'red');console.error('pushFB error',e);});
   },1200);
 }
 function initFB(){
@@ -3108,8 +3113,9 @@ function initFB(){
           }
         });
         fbRef.on('value',snap=>{
-          if(fbWriting)return;
           const data=snap.val();
+          // Abaikan echo dari tulisan kita sendiri (dalam 5 detik terakhir)
+          if(data&&data._ts&&(Date.now()-data._ts)<5000&&data._ts===fbLastWriteTs)return;
           if(data){
             ['karyawan','dokumen','absensi','sop_umum','sop_divisi','sales','briefing','outlets'].forEach(k=>{if(Array.isArray(data[k]))DB[k]=data[k];});
             if(data.kpi&&typeof data.kpi==='object') DB.kpi=data.kpi;
@@ -5198,9 +5204,13 @@ function invInit(){
 let _masterCurrentDiv = 'BAR';
 
 // Pastikan DB.masterItems ada; jika belum, copy dari PO_MASTER_ITEMS (seed sekali)
+// PENTING: Hanya seed jika Firebase SUDAH ready (fbReady=true) agar tidak
+// menimpa data custom yang belum sempat di-restore dari Firebase.
 function masterInit(){
   if(!DB.masterItems||typeof DB.masterItems!=='object'||!Object.keys(DB.masterItems).length){
-    // Seed dari konstanta bawaan
+    // Jika Firebase belum ready, jangan seed dulu — data akan datang dari listener
+    if(!fbReady) return;
+    // Seed dari konstanta bawaan (hanya saat Firebase sudah load & memang kosong)
     DB.masterItems={
       BAR: (typeof PO_MASTER_ITEMS!=='undefined'&&PO_MASTER_ITEMS.BAR)?PO_MASTER_ITEMS.BAR.map(it=>({...it,_src:'default'})):[],
       KITCHEN: (typeof PO_MASTER_ITEMS!=='undefined'&&PO_MASTER_ITEMS.KITCHEN)?PO_MASTER_ITEMS.KITCHEN.map(it=>({...it,_src:'default'})):[],
