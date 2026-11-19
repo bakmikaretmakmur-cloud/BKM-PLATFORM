@@ -4932,6 +4932,21 @@ function invPeriodDateRange(period,dateStr){
 
 function invCalcPenggunaan(rec){return(rec.stokAwal||0)+(rec.stockIn||0)-(rec.spoil||0)-(rec.transfer||0)-(rec.sisaStokAkhir||0)}
 
+// Cari data hari terakhir sebelum tanggal yang dipilih (mundur maks 60 hari)
+// Mengembalikan {dateStr, data} atau null jika tidak ada
+function invGetPrevDayData(outlet, divisi, dateStr){
+  const divData = DB.inventory?.[outlet]?.[divisi];
+  if(!divData) return null;
+  const targetDk = invDateKey(dateStr);
+  // Kumpulkan semua dk yang ada dan lebih kecil dari target
+  const keys = Object.keys(divData).filter(k => k < targetDk).sort();
+  if(!keys.length) return null;
+  const prevDk = keys[keys.length - 1]; // hari terdekat sebelum target
+  // Format balik ke dateStr: YYYYMMDD → YYYY-MM-DD
+  const prevDateStr = prevDk.slice(0,4)+'-'+prevDk.slice(4,6)+'-'+prevDk.slice(6,8);
+  return { dateStr: prevDateStr, data: divData[prevDk] };
+}
+
 function invPopulateSelects(){
   ['inv-dash-outlet','inv-input-outlet','inv-trace-outlet'].forEach(id=>{
     const el=g(id);if(!el)return;
@@ -5069,14 +5084,40 @@ function renderInvInputTable(){
   const isAdmin=currentRole==='admin';
   const masterItems=masterGetItems(divisi)||[];
   const dayData=(DB.inventory?.[outlet]?.[divisi]?.[dk])||{};
+  const isNewDay=!Object.keys(dayData).length; // belum ada data untuk tanggal ini
+
+  // Auto carry-over: ambil sisa akhir hari sebelumnya sebagai stok awal
+  let carryOverInfo = null;
+  let prevDayData = {};
+  if(isNewDay){
+    const prev = invGetPrevDayData(outlet, divisi, dateStr);
+    if(prev){
+      carryOverInfo = prev.dateStr;
+      prevDayData = prev.data;
+    }
+  }
+
   g('inv-input-sub').textContent=`${outlet} · ${divisi} · ${dateStr}`;
   if(!masterItems.length){g('inv-input-table').innerHTML='<div style="color:var(--text3);font-size:12px;padding:20px 0">Tidak ada item master untuk divisi ini.</div>';return;}
+
   const rows=masterItems.map(it=>{
-    const rec=dayData[it.name]||{stokAwal:0,stockIn:0,spoil:0,transfer:0,sisaStokAkhir:0,harga:it.cost||0};
+    let rec;
+    if(dayData[it.name]){
+      // Data hari ini sudah ada → pakai apa adanya
+      rec = dayData[it.name];
+    } else if(carryOverInfo && prevDayData[it.name]){
+      // Hari baru + ada data kemarin → carry-over sisaStokAkhir sebagai stokAwal
+      const prev = prevDayData[it.name];
+      rec = {stokAwal:prev.sisaStokAkhir||0, stockIn:0, spoil:0, transfer:0, sisaStokAkhir:0, harga:prev.harga||it.cost||0};
+    } else {
+      rec = {stokAwal:0, stockIn:0, spoil:0, transfer:0, sisaStokAkhir:0, harga:it.cost||0};
+    }
     const peng=invCalcPenggunaan(rec);
     const nilaiAkhir=(rec.sisaStokAkhir||0)*(rec.harga||it.cost||0);
     const iid=it.name.replace(/[^a-zA-Z0-9]/g,'_');
-    return`<tr id="inv-row-${iid}">
+    // Tandai baris carry-over dengan warna subtle agar staff tahu ini otomatis
+    const isCarryRow = isNewDay && carryOverInfo && (prevDayData[it.name]?.sisaStokAkhir||0)>0;
+    return`<tr id="inv-row-${iid}" ${isCarryRow?'style="background:rgba(196,168,79,.06)"':''}>
       <td style="font-weight:500;white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis">${it.name}</td>
       <td class="inv-price">${it.category}</td>
       <td><input type="number" id="inv-sa-${iid}" value="${rec.stokAwal}" min="0" oninput="invUpdateRow('${it.name.replace(/'/g,"\\'")}','${iid}','${outlet}','${divisi}','${dk}')"></td>
@@ -5089,12 +5130,22 @@ function renderInvInputTable(){
       <td><span class="inv-nilai-akhir" id="inv-na-${iid}" style="font-family:var(--fm);font-size:10px;color:var(--gold);white-space:nowrap">${rpK(nilaiAkhir)}</span></td>
     </tr>`;
   }).join('');
+
+  // Banner info carry-over
+  const carryBanner = carryOverInfo
+    ? `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;margin-bottom:8px;border-radius:8px;background:rgba(196,168,79,.12);border:1px solid rgba(196,168,79,.25);font-size:12px;color:var(--gold)">
+        <span>📦</span>
+        <span><b>Auto Carry-Over:</b> Stok Awal diisi otomatis dari <b>Sisa Akhir ${carryOverInfo}</b>. Periksa dan sesuaikan jika ada perubahan.</span>
+      </div>`
+    : '';
+
   // Footer total nilai akhir
   const totalNilaiAkhir=masterItems.reduce((s,it)=>{
     const rec=dayData[it.name]||{sisaStokAkhir:0,harga:it.cost||0};
     return s+(rec.sisaStokAkhir||0)*(rec.harga||it.cost||0);
   },0);
-  g('inv-input-table').innerHTML=`<div style="overflow-x:auto"><table class="inv-tbl"><thead><tr>
+
+  g('inv-input-table').innerHTML=carryBanner+`<div style="overflow-x:auto"><table class="inv-tbl"><thead><tr>
     <th>Nama Item</th><th>Kategori</th><th style="text-align:right">Stok Awal</th><th style="text-align:right">Stock IN</th>
     <th style="text-align:right">Spoil</th><th style="text-align:right">Transfer Keluar</th><th style="text-align:right">Sisa Akhir</th>
     <th style="text-align:right;color:var(--gold)">Penggunaan</th><th style="text-align:right">Harga/unit</th>
