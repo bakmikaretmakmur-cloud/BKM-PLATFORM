@@ -388,6 +388,32 @@ textarea{resize:vertical;line-height:1.5}
 .po-item-opt-cat{font-size:9px;color:var(--text3);font-family:var(--fm);flex-shrink:0;white-space:nowrap}
 .po-divisi-banner{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:8px 12px;margin-bottom:10px;font-size:11px;color:var(--gold);display:flex;align-items:center;gap:6px}
 
+/* CASH & BANK LEDGER */
+.ledger-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.ledger-balance{background:var(--gold-dim);border:1px solid var(--gold);border-radius:var(--r2);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.ledger-bal-label{font-size:10px;color:var(--cream3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.ledger-bal-val{font-size:22px;font-family:var(--fm);font-weight:700;color:var(--gold)}
+.ledger-tbl{width:100%;border-collapse:collapse;font-size:11px}
+.ledger-tbl th{color:var(--cream4);font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid var(--border);font-size:10px;text-transform:uppercase;letter-spacing:.04em}
+.ledger-tbl td{padding:8px 8px;border-bottom:1px solid rgba(74,52,32,.2);vertical-align:middle}
+.ledger-tbl tr:last-child td{border-bottom:none}
+.ledger-tbl .in{color:var(--green)}
+.ledger-tbl .out{color:var(--terra)}
+.ledger-tbl .transfer{color:var(--blue)}
+.ledger-pill{display:inline-block;padding:2px 7px;border-radius:999px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.pill-in{background:rgba(74,160,74,.15);color:var(--green)}
+.pill-out{background:rgba(180,80,60,.15);color:var(--terra)}
+.pill-transfer{background:rgba(60,120,200,.15);color:var(--blue)}
+.fin-summary-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:16px;margin-bottom:12px}
+.fin-total-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(74,52,32,.2);font-size:12px}
+.fin-total-row:last-child{border-bottom:none}
+.fin-grand{background:var(--gold-dim);border:1px solid var(--gold);border-radius:var(--r);padding:14px 16px;text-align:center;font-family:var(--fm);font-size:1.6rem;font-weight:700;color:var(--gold);margin-top:10px}
+.btn-xs{background:var(--bg4);border:1px solid var(--border2);border-radius:4px;padding:3px 6px;font-size:11px;cursor:pointer;color:var(--cream3);transition:all .15s}
+.btn-xs:hover{background:var(--bg3);color:var(--cream)}
+.btn-del{background:rgba(180,80,60,.12);border-color:rgba(180,80,60,.3);color:var(--terra)}
+.btn-del:hover{background:var(--terra);color:#fff}
+.btn-secondary{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);padding:8px 14px;font-size:12px;cursor:pointer;color:var(--cream);transition:all .15s}
+.btn-secondary:hover{background:var(--bg4);border-color:var(--gold);color:var(--gold)}
 /* INVENTORY */
 .inv-stat-tile{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px}
 .inv-stat-tile--gold{border-color:var(--gold);background:rgba(212,151,74,.08)}
@@ -562,7 +588,6 @@ textarea{resize:vertical;line-height:1.5}
       <div class="pin-tab active" onclick="selectRole('admin',this)">Admin</div>
       <div class="pin-tab" onclick="selectRole('ops',this)">Operasional</div>
       <div class="pin-tab" onclick="selectRole('purchasing',this)">Purchasing</div>
-      <div class="pin-tab" onclick="selectRole('finance',this)">Finance</div>
     </div>
     <div class="fg-pin"><label>Nama</label><input type="text" id="pin-name" placeholder="Nama kamu..."></div>
     <div class="pin-dots" id="pin-dots">
@@ -602,10 +627,10 @@ textarea{resize:vertical;line-height:1.5}
   <div class="sb-platform sb-section-sales">💰 Sales Report</div>
   <div class="sb-item sb-item-sales" data-page="target" onclick="nav(this)"><span class="sb-icon">🎯</span>Target Bulanan</div>
   <div class="sb-item sb-item-sales" data-page="input-harian" onclick="nav(this)"><span class="sb-icon">📝</span>Input Harian</div>
-  <div class="sb-item sb-item-sales sb-item-finance" data-page="input-pengeluaran" onclick="nav(this)" style="display:none"><span class="sb-icon">💸</span>Input Pengeluaran</div>
-  <div class="sb-item sb-item-sales sb-item-finance" data-page="staff-cost" onclick="nav(this)" style="display:none"><span class="sb-icon">👥</span>Staff Cost</div>
-  <div class="sb-item sb-item-sales sb-item-finance" data-page="bank-ledger" onclick="nav(this)" style="display:none"><span class="sb-icon">🏦</span>Rekening Bank</div>
   <div class="sb-item sb-item-sales" data-page="pnl" onclick="nav(this)"><span class="sb-icon">📊</span>PnL Report</div>
+  <div class="sb-item sb-item-sales" data-page="cash-ledger" onclick="nav(this)"><span class="sb-icon">💵</span>Cash Ledger</div>
+  <div class="sb-item sb-item-sales" data-page="bank-ledger" onclick="nav(this)"><span class="sb-icon">🏦</span>Bank Ledger</div>
+  <div class="sb-item sb-item-sales" data-page="finance-summary" onclick="nav(this)"><span class="sb-icon">📋</span>Ringkasan Keuangan</div>
   <div class="sb-item sb-item-sales" data-page="performance" onclick="nav(this)"><span class="sb-icon">📈</span>Performance MTD</div>
   <div class="sb-item sb-item-sales" data-page="traceback" onclick="nav(this)"><span class="sb-icon">🔍</span>Traceback</div>
   <div class="sb-rule sb-section-sales"></div>
@@ -796,77 +821,6 @@ textarea{resize:vertical;line-height:1.5}
         <thead><tr><th>Tanggal</th><th class="r">Penjualan</th><th class="r">Modal/HPP</th><th class="r">Expenses</th><th class="r">Net Profit</th><th class="r">Trx</th><th class="r">Avg/Trx</th><th>Catatan</th><th></th></tr></thead>
         <tbody id="sales-tbody"></tbody>
         <tfoot><tr><td>TOTAL</td><td class="r" id="sf-tsales">—</td><td class="r" id="sf-tmodal">—</td><td class="r" id="sf-texp">—</td><td class="r" id="sf-tnet">—</td><td class="r" id="sf-ttrx">—</td><td class="r" id="sf-tavg">—</td><td colspan="2"></td></tr></tfoot>
-      </table>
-    </div>
-  </div>
-</div>
-
-<!-- INPUT PENGELUARAN -->
-<div class="page" id="page-input-pengeluaran">
-  <div class="topbar">
-    <div><div class="topbar-title">Input Pengeluaran</div><div class="topbar-sub">Catat semua pengeluaran operasional</div></div>
-    <div class="spacer"></div>
-    <button class="btn btn-gold" onclick="openExpenseModal()">+ Tambah Pengeluaran</button>
-  </div>
-  <div class="filter-bar">
-    <input type="date" id="exp-from" class="sel" onchange="renderExpenseList()">
-    <input type="date" id="exp-to" class="sel" onchange="renderExpenseList()">
-    <select id="exp-filter-sumber" class="sel" onchange="renderExpenseList()">
-      <option value="">Semua Sumber Dana</option>
-      <option value="cash">Cash</option>
-      <option value="transfer">Transfer Rekening</option>
-    </select>
-    <button class="btn btn-ghost btn-sm" onclick="setExpRange('mtd')">MTD</button>
-    <button class="btn btn-ghost btn-sm" onclick="setExpRange('7d')">7H</button>
-    <button class="btn btn-ghost btn-sm" onclick="setExpRange('all')">Semua</button>
-  </div>
-  <div class="scroll">
-    <div class="kpi-row kpi-row-4" id="exp-kpi"></div>
-    <div style="overflow-x:auto">
-      <table class="tbl">
-        <thead><tr><th>Tanggal</th><th>Tujuan Pengeluaran</th><th>Vendor</th><th>Sumber Dana</th><th class="r">Nominal</th><th>Input oleh</th><th></th></tr></thead>
-        <tbody id="exp-tbody"></tbody>
-        <tfoot><tr><td colspan="4">TOTAL</td><td class="r" id="exp-total-footer">—</td><td colspan="2"></td></tr></tfoot>
-      </table>
-    </div>
-  </div>
-</div>
-
-<!-- STAFF COST -->
-<div class="page" id="page-staff-cost">
-  <div class="topbar">
-    <div><div class="topbar-title">Staff Cost</div><div class="topbar-sub">Biaya gaji dan tunjangan karyawan per minggu</div></div>
-    <div class="spacer"></div>
-    <input type="month" id="sc-month" class="sel" onchange="renderStaffCostList()">
-    <button class="btn btn-gold" onclick="openStaffCostModal()">+ Input Staff Cost</button>
-  </div>
-  <div class="scroll">
-    <div class="kpi-row kpi-row-3" id="sc-kpi"></div>
-    <div style="overflow-x:auto;margin-top:12px">
-      <table class="tbl">
-        <thead><tr><th>Periode</th><th>Minggu ke-</th><th>Catatan</th><th class="r">Nominal</th><th>Input oleh</th><th></th></tr></thead>
-        <tbody id="sc-tbody"></tbody>
-        <tfoot><tr><td colspan="3">TOTAL BULAN INI</td><td class="r" id="sc-total-footer">—</td><td colspan="2"></td></tr></tfoot>
-      </table>
-    </div>
-  </div>
-</div>
-
-<!-- REKENING BANK -->
-<div class="page" id="page-bank-ledger">
-  <div class="topbar">
-    <div><div class="topbar-title">Rekening Bank</div><div class="topbar-sub">Saldo &amp; mutasi rekening operasional</div></div>
-    <div class="spacer"></div>
-    <input type="month" id="bl-month" class="sel" onchange="renderBankLedger()">
-    <button class="btn btn-gold" onclick="openBankInModal()">+ Uang Masuk</button>
-  </div>
-  <div class="scroll">
-    <div class="kpi-row kpi-row-4" id="bl-kpi"></div>
-    <div style="overflow-x:auto;margin-top:12px">
-      <table class="tbl">
-        <thead><tr><th>Tanggal</th><th>Keterangan</th><th>Jenis</th><th class="r" style="color:var(--green)">Masuk</th><th class="r" style="color:var(--terra)">Keluar</th><th class="r">Saldo</th><th>Input oleh</th><th></th></tr></thead>
-        <tbody id="bl-tbody"></tbody>
-        <tfoot><tr><td colspan="3">Total Periode</td><td class="r" id="bl-total-in" style="color:var(--green)">—</td><td class="r" id="bl-total-out" style="color:var(--terra)">—</td><td class="r" id="bl-saldo-akhir">—</td><td colspan="2"></td></tr></tfoot>
       </table>
     </div>
   </div>
@@ -1381,6 +1335,65 @@ textarea{resize:vertical;line-height:1.5}
   <div class="mf"><button class="btn btn-ghost" onclick="closeMod('m-target')">Batal</button><button class="btn btn-gold" onclick="saveTarget()">💾 Simpan</button></div>
 </div></div>
 
+<!-- ══════════════ CASH LEDGER PAGE ══════════════ -->
+<div class="page" id="page-cash-ledger">
+  <div class="topbar"><div><div class="topbar-title">💵 Cash Ledger</div><div class="topbar-sub">Pencatatan keluar masuk uang tunai</div></div>
+    <button class="btn btn-gold btn-sm" onclick="openLedgerModal('cash')">+ Transaksi</button></div>
+  <div class="scroll">
+    <div class="ledger-balance">
+      <div><div class="ledger-bal-label">Saldo Cash</div><div class="ledger-bal-val" id="cash-saldo">Rp 0</div></div>
+      <div style="text-align:right"><div class="ledger-bal-label">Total Masuk</div><div style="font-size:13px;font-family:var(--fm);color:var(--green)" id="cash-total-in">Rp 0</div>
+      <div class="ledger-bal-label" style="margin-top:4px">Total Keluar</div><div style="font-size:13px;font-family:var(--fm);color:var(--terra)" id="cash-total-out">Rp 0</div></div>
+    </div>
+    <div style="overflow-x:auto"><table class="ledger-tbl"><thead><tr>
+      <th>Tanggal</th><th>Keterangan</th><th>Tipe</th><th style="text-align:right">Debit (Masuk)</th><th style="text-align:right">Kredit (Keluar)</th><th style="text-align:right">Saldo</th><th></th>
+    </tr></thead><tbody id="cash-ledger-body"></tbody></table></div>
+  </div>
+</div>
+
+<!-- ══════════════ BANK LEDGER PAGE ══════════════ -->
+<div class="page" id="page-bank-ledger">
+  <div class="topbar"><div><div class="topbar-title">🏦 Bank Ledger</div><div class="topbar-sub">Pencatatan keluar masuk rekening bank</div></div>
+    <button class="btn btn-gold btn-sm" onclick="openLedgerModal('bank')">+ Transaksi</button></div>
+  <div class="scroll">
+    <div class="ledger-balance">
+      <div><div class="ledger-bal-label">Saldo Bank</div><div class="ledger-bal-val" id="bank-saldo">Rp 0</div></div>
+      <div style="text-align:right"><div class="ledger-bal-label">Total Masuk</div><div style="font-size:13px;font-family:var(--fm);color:var(--green)" id="bank-total-in">Rp 0</div>
+      <div class="ledger-bal-label" style="margin-top:4px">Total Keluar</div><div style="font-size:13px;font-family:var(--fm);color:var(--terra)" id="bank-total-out">Rp 0</div></div>
+    </div>
+    <div style="overflow-x:auto"><table class="ledger-tbl"><thead><tr>
+      <th>Tanggal</th><th>Keterangan</th><th>Tipe</th><th>Bank/Rek</th><th style="text-align:right">Debit (Masuk)</th><th style="text-align:right">Kredit (Keluar)</th><th style="text-align:right">Saldo</th><th></th>
+    </tr></thead><tbody id="bank-ledger-body"></tbody></table></div>
+  </div>
+</div>
+
+<!-- ══════════════ FINANCE SUMMARY PAGE ══════════════ -->
+<div class="page" id="page-finance-summary">
+  <div class="topbar"><div><div class="topbar-title">📋 Ringkasan Keuangan</div><div class="topbar-sub">Posisi Cash &amp; Bank</div></div></div>
+  <div class="scroll" id="finance-summary-content"></div>
+</div>
+
+<!-- MODAL: LEDGER TRANSACTION -->
+<div class="mbg" id="m-ledger" onclick="if(event.target===this)closeMod('m-ledger')">
+<div class="modal narrow">
+  <div class="modal-title" id="ledger-modal-title">Tambah Transaksi Cash</div>
+  <input type="hidden" id="ledger-type-mode" value="cash">
+  <input type="hidden" id="ledger-edit-id" value="">
+  <div class="mf"><label class="ml">Tanggal</label><input type="date" id="ledger-date" class="inp"></div>
+  <div class="mf"><label class="ml">Tipe Transaksi</label>
+    <select id="ledger-type" class="sel" onchange="ledgerTypeChanged()">
+      <option value="in">💚 Pemasukan (Debit)</option>
+      <option value="out">🔴 Pengeluaran (Kredit)</option>
+      <option value="transfer">🔄 Transfer</option>
+    </select>
+  </div>
+  <div class="mf" id="ledger-bank-row" style="display:none"><label class="ml">Bank / Rekening</label><input type="text" id="ledger-bank" class="inp" placeholder="BCA, Mandiri, BRI..."></div>
+  <div class="mf"><label class="ml">Keterangan</label><input type="text" id="ledger-desc" class="inp" placeholder="Contoh: Setoran penjualan, Bayar supplier..."></div>
+  <div class="mf"><label class="ml">Jumlah (Rp)</label><input type="number" id="ledger-amount" class="inp" min="0" placeholder="0"></div>
+  <div class="mf"><label class="ml">Referensi (opsional)</label><input type="text" id="ledger-ref" class="inp" placeholder="No. invoice, nota..."></div>
+  <div class="mf"><button class="btn btn-ghost" onclick="closeMod('m-ledger')">Batal</button><button class="btn btn-gold" onclick="saveLedgerTx()">💾 Simpan</button></div>
+</div></div>
+
 <!-- SALES INPUT -->
 <div class="mbg" id="m-sales"><div class="modal wide">
   <div class="modal-title">💰 <span id="m-sales-title">Input Penjualan</span></div>
@@ -1412,78 +1425,7 @@ textarea{resize:vertical;line-height:1.5}
   </div>
 </div></div>
 
-<!-- MODAL: INPUT PENGELUARAN -->
-<div class="mbg" id="m-expense" onclick="if(event.target===this)closeMod('m-expense')"><div class="modal wide">
-  <div class="modal-title">💸 <span id="m-expense-title">Tambah Pengeluaran</span></div>
-  <input type="hidden" id="expense-edit-id">
-  <div class="fg-row">
-    <div class="fg"><label>Tanggal Transaksi *</label><input id="exp-date" type="date" style="width:100%"></div>
-    <div class="fg"><label>Nominal Pengeluaran (Rp) *</label><input id="exp-nominal" type="number" placeholder="0" style="width:100%"></div>
-  </div>
-  <div class="fg"><label>Tujuan Pengeluaran *</label><input id="exp-tujuan" type="text" placeholder="Contoh: Pembelian gas LPG, Perbaikan AC..." style="width:100%"></div>
-  <div class="fg"><label>Nama Vendor / Penerima *</label><input id="exp-vendor" type="text" placeholder="Nama toko, supplier, atau individu..." style="width:100%"></div>
-  <div class="fg"><label>Sumber Dana *</label>
-    <select id="exp-sumber" style="width:100%">
-      <option value="">— Pilih sumber dana —</option>
-      <option value="cash">💵 Cash</option>
-      <option value="transfer">🏦 Transfer Rekening</option>
-    </select>
-  </div>
-  <div class="fg"><label>Keterangan Tambahan</label><input id="exp-ket" type="text" placeholder="Opsional..." style="width:100%"></div>
-  <div class="mf">
-    <button class="btn btn-ghost" onclick="closeMod('m-expense')">Batal</button>
-    <button class="btn btn-red btn-sm" id="btn-del-expense" onclick="deleteExpenseEntry()" style="display:none;margin-right:auto">🗑 Hapus</button>
-    <button class="btn btn-gold" onclick="saveExpenseEntry()">💾 Simpan</button>
-  </div>
-</div></div>
-
-<!-- MODAL: INPUT STAFF COST -->
-<div class="mbg" id="m-staff-cost" onclick="if(event.target===this)closeMod('m-staff-cost')"><div class="modal narrow">
-  <div class="modal-title">👥 <span id="m-sc-title">Input Staff Cost</span></div>
-  <input type="hidden" id="sc-edit-id">
-  <div class="fg"><label>Bulan *</label><input id="sc-month-input" type="month" style="width:100%"></div>
-  <div class="fg"><label>Minggu ke- *</label>
-    <select id="sc-week" style="width:100%">
-      <option value="1">Minggu 1 (tgl 1–7)</option>
-      <option value="2">Minggu 2 (tgl 8–14)</option>
-      <option value="3">Minggu 3 (tgl 15–21)</option>
-      <option value="4">Minggu 4 (tgl 22–28)</option>
-      <option value="5">Minggu 5 (tgl 29–31)</option>
-    </select>
-  </div>
-  <div class="fg"><label>Total Staff Cost (Rp) *</label><input id="sc-amount" type="number" placeholder="0" style="width:100%"></div>
-  <div class="fg"><label>Catatan</label><input id="sc-note" type="text" placeholder="Contoh: Gaji + lembur minggu ke-1..." style="width:100%"></div>
-  <div class="mf">
-    <button class="btn btn-ghost" onclick="closeMod('m-staff-cost')">Batal</button>
-    <button class="btn btn-red btn-sm" id="btn-del-sc" onclick="deleteStaffCostEntry()" style="display:none;margin-right:auto">🗑 Hapus</button>
-    <button class="btn btn-gold" onclick="saveStaffCostEntry()">💾 Simpan</button>
-  </div>
-</div></div>
-
 <!-- BRIEFING -->
-<div class="mbg" id="m-bank-in" onclick="if(event.target===this)closeMod('m-bank-in')"><div class="modal narrow">
-  <div class="modal-title">🏦 <span id="m-bank-in-title">Input Uang Masuk</span></div>
-  <input type="hidden" id="bl-edit-id">
-  <div class="fg">
-    <label class="fl">Tanggal <span style="color:var(--red)">*</span></label>
-    <input type="date" id="bl-date" class="input">
-  </div>
-  <div class="fg">
-    <label class="fl">Nominal <span style="color:var(--red)">*</span></label>
-    <input type="number" id="bl-amount" class="input" placeholder="Contoh: 5000000" min="0">
-  </div>
-  <div class="fg">
-    <label class="fl">Keterangan <span style="color:var(--red)">*</span></label>
-    <input type="text" id="bl-desc" class="input" placeholder="Contoh: Transfer dari penjualan, Top up operasional...">
-  </div>
-  <div class="mf">
-    <button class="btn btn-red btn-sm" id="btn-del-bank-in" onclick="deleteBankIn()" style="display:none">🗑 Hapus</button>
-    <div class="spacer"></div>
-    <button class="btn btn-ghost" onclick="closeMod('m-bank-in')">Batal</button>
-    <button class="btn btn-gold" onclick="saveBankIn()">💾 Simpan</button>
-  </div>
-</div></div>
-
 <div class="mbg" id="m-briefing"><div class="modal">
   <div class="modal-title">💬 Briefing / Handover</div>
   <div class="fg-row">
@@ -1748,7 +1690,7 @@ const FB_CFG = {
 const FB_PATH = 'bkm_management/v1';
 
 // ── STATE ──
-let PINS = { admin:'1234', ops:'5678', purchasing:'9999', finance:'7777' };
+let PINS = { admin:'1234', ops:'5678', purchasing:'9999' };
 let currentRole = '', currentUser = '', currentOutlet = '', _pinRole = 'admin', _pinBuf = '';
 let _editKarId = null, _editSalesDate = null, _expRows = 0;
 let _charts = {};
@@ -1760,15 +1702,14 @@ let DB = {
   sop_umum:[], sop_divisi:[],
   sales:[], targets:{}, checklist:{}, briefing:[],
   outlets:['BKM Karet Makmur'],
-  kpi:{}, // KPI module: { [outlet_period_divId]: { scores:{}, formData:{}, notes:'' } }
-  clTemplates:{}, // Admin-editable checklist templates: { opening, midshift, closing, weekly, monthly }
-  kpiCustomDivisions:[], // Admin-added KPI divisions: [{id,name,icon,scope,assessor,sections:[]}]
-  expenses:[], // Input Pengeluaran: [{id,date,nominal,tujuan,vendor,sumber,by,ts}]
-  staffCost:[], // Staff Cost Weekly: [{id,week,year,month,amount,note,by,ts}]
-  bankLedger:[], // Rekening Bank: [{id,date,type:'in'|'out',amount,desc,refId,by,ts}]
-  inventory:{}, // Inventory harian: {outlet:{divisi:{dk:{itemName:{...}}}}}
-  masterItems:{}, // Master item per divisi: {BAR:[],KITCHEN:[],FLOOR:[]}
-  settings:{ pins:{ admin:'1234', ops:'5678', purchasing:'9999', finance:'7777' } }
+  kpi:{},
+  clTemplates:{},
+  kpiCustomDivisions:[],
+  inventory:{},   // { [outlet][divisi][dateKey][itemName]: rec }
+  masterItems:{}, // { BAR:[], KITCHEN:[], FLOOR:[] }
+  cashLedger:[],  // [{id,date,type:'in'|'out'|'transfer',desc,amount,ref,createdAt}]
+  bankLedger:[],  // [{id,date,type:'in'|'out'|'transfer',desc,amount,ref,bank,createdAt}]
+  settings:{ pins:{ admin:'1234', ops:'5678', purchasing:'9999' } }
 };
 
 // ── DEFAULTS ──
@@ -1937,16 +1878,13 @@ function lockApp() {
 // ── ROLE UI ──
 function updateRoleUI() {
   const isAdmin=currentRole==='admin', isPurchasing=currentRole==='purchasing';
-  const isFinance=currentRole==='finance';
-  const dotColor = isAdmin?'var(--gold)':isPurchasing?'var(--blue)':isFinance?'var(--accent)':'var(--green)';
+  const dotColor = isAdmin?'var(--gold)':isPurchasing?'var(--blue)':'var(--green)';
   g('role-dot').style.background=dotColor;
   g('role-name').textContent=currentUser;
-  const roleLabel = isAdmin?'ADMIN':isPurchasing?'PURCHASING':isFinance?'FINANCE':'OPERASIONAL';
+  const roleLabel = isAdmin?'ADMIN':isPurchasing?'PURCHASING':'OPERASIONAL';
   g('role-label').textContent=roleLabel;
   // Admin-only elements (SOP edit, tambah karyawan, upload dok, set target, reset checklist)
   document.querySelectorAll('.admin-only').forEach(el=>el.style.display=isAdmin?'inline-flex':'none');
-  // Finance & Admin: Input Pengeluaran dan Staff Cost
-  document.querySelectorAll('.sb-item-finance').forEach(el=>el.style.display=(isAdmin||isFinance)?'flex':'none');
   // Ganti PIN button: visible for all logged-in users
   const _btnCP=g('btn-change-pin'); if(_btnCP) _btnCP.style.display='flex';
   // Purchasing: hide HRIS/Sales/Checklist/KPI sections, show only PO
@@ -1998,28 +1936,26 @@ function nav(el) {
   const page=el?.dataset.page;
   // KPI & Master Data pages: hanya Admin yang boleh akses
   if((page==='kpi-dashboard'||page==='kpi-form'||page==='master-items')&&currentRole!=='admin') return;
-  // Input Pengeluaran, Staff Cost & Rekening Bank: hanya Admin dan Finance
-  if((page==='input-pengeluaran'||page==='staff-cost'||page==='bank-ledger')&&currentRole!=='admin'&&currentRole!=='finance'){showToast('⛔ Hanya Admin/Finance');return;}
   document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));
   el?.classList.add('active');
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   const pg=g('page-'+page); if(pg) pg.classList.add('active');
   // Init date inputs if empty
   const d=today(), m=thisMonth();
-  const inits={'absensi-date':d,'opening-date':d,'midshift-date':d,'closing-date':d,'weekly-date':d,'briefing-date':d,'br-date':d,'monthly-month':m,'target-month':m,'pnl-month':m,'perf-month':m,'sales-input-date':d,'sc-month':m,'bl-month':m};
+  const inits={'absensi-date':d,'opening-date':d,'midshift-date':d,'closing-date':d,'weekly-date':d,'briefing-date':d,'br-date':d,'monthly-month':m,'target-month':m,'pnl-month':m,'perf-month':m,'sales-input-date':d};
   Object.entries(inits).forEach(([id,val])=>{const el=g(id);if(el&&!el.value)el.value=val;});
   if(!g('tb-from')?.value){const f=new Date();f.setDate(1);if(g('tb-from'))g('tb-from').value=f.toISOString().slice(0,10);if(g('tb-to'))g('tb-to').value=d;}
   const renders={
     'sop-umum':renderSOPUmum,'sop-divisi':renderSOPDivisi,'karyawan':renderKaryawan,
     'dokumen':renderDokumen,'absensi':renderAbsensi,
     'target':renderTarget,'input-harian':renderSalesList,'pnl':renderPnL,
+    'cash-ledger':renderCashLedger,'bank-ledger':renderBankLedger,'finance-summary':renderFinanceSummary,
     'performance':renderPerformance,'traceback':renderTraceback,
     'opening':()=>renderChecklist('opening'),'midshift':()=>renderChecklist('midshift'),'closing':()=>renderChecklist('closing'),
     'weekly-cl':renderWeekly,'monthly-cl':renderMonthly,'briefing':renderBriefing,
     'kpi-dashboard':renderKPIDashboard,'kpi-form':renderKPIFormPage,
     'inv-dashboard':renderInvDashboard,'inv-input':renderInvInputTable,'inv-trace':renderInvTrace,
     'master-items':renderMasterItems,
-    'input-pengeluaran':renderExpenseList,'staff-cost':renderStaffCostList,'bank-ledger':renderBankLedger,
   };
   // Inventory: set date default if empty
   if(page==='inv-input'){const el=g('inv-input-date');if(el&&!el.value)el.value=today();}
@@ -2378,6 +2314,20 @@ function renderSalesList() {
 }
 
 // ══════════════ SALES: PnL ══════════════
+function calcSpoilValue(mo){
+  let total=0;
+  const inv=DB.inventory||{};
+  Object.values(inv).forEach(outletData=>{
+    Object.values(outletData).forEach(divData=>{
+      Object.entries(divData).forEach(([dk,dayData])=>{
+        const dStr=dk.slice(0,4)+'-'+dk.slice(4,6)+'-'+dk.slice(6,8);
+        if(!dStr.startsWith(mo))return;
+        Object.values(dayData).forEach(rec=>{total+=(rec.spoil||0)*(rec.harga||0);});
+      });
+    });
+  });
+  return total;
+}
 function renderPnL() {
   const mo=g('pnl-month')?.value||thisMonth();
   g('pnl-period-lbl').textContent=shortMonth(mo);
@@ -2385,18 +2335,11 @@ function renderPnL() {
   const tgt=DB.targets[mo]||{};
   const tS=sales.reduce((a,s)=>a+s.sales,0), tM=sales.reduce((a,s)=>a+s.modal,0);
   const tE=sales.reduce((a,s)=>a+(s.totalExp||0),0);
-  // Expenses dari modul Input Pengeluaran (admin/finance)
-  const expList=(DB.expenses||[]).filter(e=>e.date?.startsWith(mo));
-  const tExpModule=expList.reduce((s,e)=>s+(e.nominal||0),0);
-  // Staff Cost bulan ini
-  const tStaffCost=(DB.staffCost||[]).filter(s=>s.month===mo).reduce((s,e)=>s+(e.amount||0),0);
-  const tTotalExp=tE+tExpModule+tStaffCost;
-  const gross=tS-tM, net=gross-tTotalExp;
+  const tSpoil=calcSpoilValue(mo);
+  const gross=tS-tM, net=gross-tE-tSpoil;
   const gm=tS?gross/tS*100:0, nm=tS?net/tS*100:0;
   const expMap={};
   sales.forEach(s=>(s.expenses||[]).forEach(e=>{expMap[e.desc]=(expMap[e.desc]||0)+e.amt;}));
-  const expModMap={};
-  expList.forEach(e=>{expModMap[e.tujuan]=(expModMap[e.tujuan]||0)+e.nominal;});
   g('pnl-content').innerHTML=`
     <div class="pnl-section"><div style="font-size:11px;font-weight:700;color:var(--cream3);margin-bottom:9px;text-transform:uppercase;letter-spacing:.06em">📈 Pendapatan</div>
       <div class="pnl-row"><span class="pnl-lbl">Total Penjualan</span><span class="pnl-val" style="color:var(--gold)">${rp(tS)}</span></div>
@@ -2405,12 +2348,10 @@ function renderPnL() {
     </div>
     <div class="pnl-section"><div style="font-size:11px;font-weight:700;color:var(--cream3);margin-bottom:9px;text-transform:uppercase;letter-spacing:.06em">💸 Pengeluaran</div>
       <div class="pnl-row"><span class="pnl-lbl">HPP / Modal Bahan</span><span class="pnl-val" style="color:var(--terra)">(${rp(tM)})</span></div>
-      <div class="pnl-row"><span class="pnl-lbl">Petty Cash & Expenses Harian</span><span class="pnl-val" style="color:var(--terra)">(${rp(tE)})</span></div>
-      <div class="pnl-row"><span class="pnl-lbl">Pengeluaran Operasional</span><span class="pnl-val" style="color:var(--terra)">(${rp(tExpModule)})</span></div>
-      <div class="pnl-row"><span class="pnl-lbl">Staff Cost</span><span class="pnl-val" style="color:var(--terra)">(${rp(tStaffCost)})</span></div>
-      <div class="pnl-row" style="font-weight:600"><span class="pnl-lbl">Total Pengeluaran</span><span class="pnl-val" style="color:var(--terra)">(${rp(tTotalExp)})</span></div>
+      <div class="pnl-row"><span class="pnl-lbl">Petty Cash &amp; Expenses</span><span class="pnl-val" style="color:var(--terra)">(${rp(tE)})</span></div>
+      <div class="pnl-row"><span class="pnl-lbl">Nilai Spoil Inventory</span><span class="pnl-val" style="color:var(--terra)">(${rp(tSpoil)})</span></div>
       <div class="pnl-row"><span class="pnl-lbl">Budget Petty Cash</span><span class="pnl-val" style="color:var(--cream4)">${rp(tgt.pettyCash||0)}</span></div>
-      <div class="pnl-row"><span class="pnl-lbl">Selisih Petty Cash vs Budget</span><span class="pnl-val" style="color:${tgt.pettyCash&&tE>tgt.pettyCash?'var(--red)':'var(--green)'}">${tgt.pettyCash?rp(Math.abs(tE-tgt.pettyCash))+' '+(tE>tgt.pettyCash?'(over)':'(under)'):'—'}</span></div>
+      <div class="pnl-row"><span class="pnl-lbl">Selisih vs Budget</span><span class="pnl-val" style="color:${tgt.pettyCash&&tE>tgt.pettyCash?'var(--red)':'var(--green)'}">${tgt.pettyCash?rp(Math.abs(tE-tgt.pettyCash))+' '+(tE>tgt.pettyCash?'(over)':'(under)'):'—'}</span></div>
     </div>
     <div class="pnl-section"><div style="font-size:11px;font-weight:700;color:var(--cream3);margin-bottom:9px;text-transform:uppercase;letter-spacing:.06em">📊 Profitabilitas</div>
       <div class="pnl-row"><span class="pnl-lbl">Gross Profit (Penjualan − HPP)</span><span class="pnl-val" style="color:var(--gold)">${rp(gross)}</span></div>
@@ -2420,276 +2361,193 @@ function renderPnL() {
       <div><div style="font-size:9px;color:var(--cream4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px">NET PROFIT ${shortMonth(mo)}</div><div style="font-size:11px;color:var(--cream3);font-family:var(--fm)">Margin: ${nm.toFixed(1)}%</div></div>
       <div style="font-size:21px;font-family:var(--fm);font-weight:700;color:${net>=0?'var(--gold)':'var(--red)'}">${rp(net)}</div>
     </div>
-    <div style="margin-top:14px"><div style="font-size:9px;font-weight:700;color:var(--cream4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Detail Petty Cash Harian</div>
-    ${Object.entries(expMap).sort((a,b)=>b[1]-a[1]).map(([desc,amt])=>`<div class="pnl-row"><span class="pnl-lbl">${escHtml(desc)}</span><span class="pnl-val" style="color:var(--terra)">(${rp(amt)})</span></div>`).join('')||'<div style="color:var(--cream4);font-size:11px">Belum ada data</div>'}
+    <div style="margin-top:14px"><div style="font-size:9px;font-weight:700;color:var(--cream4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Detail Pengeluaran Petty Cash</div>
+    ${Object.entries(expMap).sort((a,b)=>b[1]-a[1]).map(([desc,amt])=>`<div class="pnl-row"><span class="pnl-lbl">${desc}</span><span class="pnl-val" style="color:var(--terra)">${rp(amt)}</span></div>`).join('')||'<div style="color:var(--cream4);font-size:11px">Belum ada data</div>'}
+    </div>`;
+}
+
+// ══════════════ CASH & BANK LEDGER ══════════════
+function openLedgerModal(mode, editId=''){
+  const m=document.getElementById('m-ledger');
+  if(!m) return;
+  m.dataset.mode=mode;
+  m.dataset.editId=editId;
+  document.getElementById('ledger-modal-title').textContent=(mode==='cash'?'💵 Cash':'🏦 Bank')+' — '+(editId?'Edit Transaksi':'Transaksi Baru');
+  const bankRow=document.getElementById('ledger-bank-row');
+  if(bankRow) bankRow.style.display=mode==='bank'?'flex':'none';
+  if(editId){
+    const arr=mode==='cash'?(DB.cashLedger||[]):(DB.bankLedger||[]);
+    const tx=arr.find(x=>x.id===editId);
+    if(tx){
+      document.getElementById('ledger-date').value=tx.date||'';
+      document.getElementById('ledger-type').value=tx.type||'in';
+      document.getElementById('ledger-desc').value=tx.desc||'';
+      document.getElementById('ledger-amount').value=tx.amount||'';
+      document.getElementById('ledger-ref').value=tx.ref||'';
+      if(mode==='bank'&&document.getElementById('ledger-bank')) document.getElementById('ledger-bank').value=tx.bank||'';
+    }
+  } else {
+    document.getElementById('ledger-date').value=new Date().toISOString().slice(0,10);
+    document.getElementById('ledger-type').value='in';
+    document.getElementById('ledger-desc').value='';
+    document.getElementById('ledger-amount').value='';
+    document.getElementById('ledger-ref').value='';
+    if(mode==='bank'&&document.getElementById('ledger-bank')) document.getElementById('ledger-bank').value='';
+  }
+  openMod('m-ledger');
+}
+
+function ledgerTypeChanged(){
+  // Could show/hide extra fields per type if needed in future
+}
+
+function saveLedgerTx(){
+  const m=document.getElementById('m-ledger');
+  const mode=m.dataset.mode;
+  const editId=m.dataset.editId;
+  const date=document.getElementById('ledger-date').value;
+  const type=document.getElementById('ledger-type').value;
+  const desc=document.getElementById('ledger-desc').value.trim();
+  const amount=parseFloat(document.getElementById('ledger-amount').value)||0;
+  const ref=document.getElementById('ledger-ref').value.trim();
+  const bankEl=document.getElementById('ledger-bank');
+  const bank=bankEl?bankEl.value.trim():'';
+  if(!date||!desc||amount<=0){alert('Isi tanggal, keterangan, dan nominal.');return;}
+  const tx={id:editId||('tx_'+Date.now()+'_'+Math.random().toString(36).slice(2,7)),date,type,desc,amount,ref,createdAt:new Date().toISOString()};
+  if(mode==='bank') tx.bank=bank;
+  if(mode==='cash'){
+    if(!DB.cashLedger) DB.cashLedger=[];
+    if(editId){const i=DB.cashLedger.findIndex(x=>x.id===editId);if(i>=0)DB.cashLedger[i]=tx;else DB.cashLedger.push(tx);}
+    else DB.cashLedger.push(tx);
+  } else {
+    if(!DB.bankLedger) DB.bankLedger=[];
+    if(editId){const i=DB.bankLedger.findIndex(x=>x.id===editId);if(i>=0)DB.bankLedger[i]=tx;else DB.bankLedger.push(tx);}
+    else DB.bankLedger.push(tx);
+  }
+  pushFB();
+  closeMod('m-ledger');
+  if(mode==='cash') renderCashLedger();
+  else renderBankLedger();
+  renderFinanceSummary();
+}
+
+function deleteLedgerTx(mode, id){
+  if(!confirm('Hapus transaksi ini?')) return;
+  if(mode==='cash') DB.cashLedger=(DB.cashLedger||[]).filter(x=>x.id!==id);
+  else DB.bankLedger=(DB.bankLedger||[]).filter(x=>x.id!==id);
+  pushFB();
+  if(mode==='cash') renderCashLedger();
+  else renderBankLedger();
+  renderFinanceSummary();
+}
+
+function _buildLedgerRows(arr, mode){
+  if(!arr||!arr.length) return '<tr><td colspan="7" style="text-align:center;opacity:.5;padding:16px">Belum ada transaksi</td></tr>';
+  const sorted=[...arr].sort((a,b)=>a.date.localeCompare(b.date)||(a.createdAt||'').localeCompare(b.createdAt||''));
+  let bal=0, rows='';
+  sorted.forEach(tx=>{
+    if(tx.type==='in') bal+=tx.amount;
+    else if(tx.type==='out') bal-=tx.amount;
+    const typeLabel=tx.type==='in'?'<span class="ledger-pill pill-in">Masuk</span>':tx.type==='out'?'<span class="ledger-pill pill-out">Keluar</span>':'<span class="ledger-pill pill-transfer">Transfer</span>';
+    const amtClass=tx.type==='in'?'in':tx.type==='out'?'out':'transfer';
+    const amtSign=tx.type==='in'?'+':tx.type==='out'?'-':'±';
+    const bankCol=mode==='bank'?`<td>${tx.bank||'-'}</td>`:'';
+    rows+=`<tr>
+      <td>${tx.date}</td>
+      <td>${typeLabel}</td>
+      <td>${tx.desc}</td>
+      ${bankCol}
+      <td class="${amtClass}" style="text-align:right">${amtSign}${rp(tx.amount)}</td>
+      <td style="text-align:right">${rp(bal)}</td>
+      <td style="text-align:center;white-space:nowrap">
+        <button class="btn-xs" onclick="openLedgerModal('${mode}','${tx.id}')">✏️</button>
+        <button class="btn-xs btn-del" onclick="deleteLedgerTx('${mode}','${tx.id}')">🗑️</button>
+      </td>
+    </tr>`;
+  });
+  return rows;
+}
+
+function _calcLedgerBalance(arr){
+  let bal=0;
+  (arr||[]).forEach(tx=>{
+    if(tx.type==='in') bal+=tx.amount;
+    else if(tx.type==='out') bal-=tx.amount;
+  });
+  return bal;
+}
+
+function renderCashLedger(){
+  const arr=DB.cashLedger||[];
+  const cashBal=_calcLedgerBalance(arr);
+  const totalIn=arr.filter(x=>x.type==='in').reduce((s,x)=>s+x.amount,0);
+  const totalOut=arr.filter(x=>x.type==='out').reduce((s,x)=>s+x.amount,0);
+  const rows=_buildLedgerRows(arr,'cash');
+  const saldoEl=document.getElementById('cash-saldo');
+  const inEl=document.getElementById('cash-total-in');
+  const outEl=document.getElementById('cash-total-out');
+  const bodyEl=document.getElementById('cash-ledger-body');
+  if(saldoEl){saldoEl.textContent=rp(cashBal);saldoEl.style.color=cashBal>=0?'var(--green)':'var(--terra)';}
+  if(inEl) inEl.textContent=rp(totalIn);
+  if(outEl) outEl.textContent=rp(totalOut);
+  if(bodyEl) bodyEl.innerHTML=rows;
+}
+
+function renderBankLedger(){
+  const arr=DB.bankLedger||[];
+  const bankBal=_calcLedgerBalance(arr);
+  const totalIn=arr.filter(x=>x.type==='in').reduce((s,x)=>s+x.amount,0);
+  const totalOut=arr.filter(x=>x.type==='out').reduce((s,x)=>s+x.amount,0);
+  const rows=_buildLedgerRows(arr,'bank');
+  const saldoEl=document.getElementById('bank-saldo');
+  const inEl=document.getElementById('bank-total-in');
+  const outEl=document.getElementById('bank-total-out');
+  const bodyEl=document.getElementById('bank-ledger-body');
+  if(saldoEl){saldoEl.textContent=rp(bankBal);saldoEl.style.color=bankBal>=0?'var(--green)':'var(--terra)';}
+  if(inEl) inEl.textContent=rp(totalIn);
+  if(outEl) outEl.textContent=rp(totalOut);
+  if(bodyEl) bodyEl.innerHTML=rows;
+}
+
+function renderFinanceSummary(){
+  const cashBal=_calcLedgerBalance(DB.cashLedger||[]);
+  const bankBal=_calcLedgerBalance(DB.bankLedger||[]);
+  const totalBal=cashBal+bankBal;
+  const mo=new Date().toISOString().slice(0,7);
+  let cashIn=0,cashOut=0,bankIn=0,bankOut=0;
+  (DB.cashLedger||[]).forEach(tx=>{if(tx.date&&tx.date.startsWith(mo)){if(tx.type==='in')cashIn+=tx.amount;else if(tx.type==='out')cashOut+=tx.amount;}});
+  (DB.bankLedger||[]).forEach(tx=>{if(tx.date&&tx.date.startsWith(mo)){if(tx.type==='in')bankIn+=tx.amount;else if(tx.type==='out')bankOut+=tx.amount;}});
+  const pg=document.getElementById('finance-summary-content');
+  if(!pg) return;
+  pg.innerHTML=`
+    <h2 style="margin:0 0 20px;font-size:1.3rem">📋 Ringkasan Keuangan</h2>
+    <div class="fin-summary-card">
+      <div style="font-weight:600;margin-bottom:12px;font-size:1.05rem">💰 Total Saldo (Cash + Bank)</div>
+      <div class="fin-grand">${rp(totalBal)}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+        <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:12px">
+          <div style="opacity:.6;font-size:.8rem">💵 Cash</div>
+          <div style="font-size:1.1rem;font-weight:600;color:${cashBal>=0?'var(--green)':'var(--terra)'}">${rp(cashBal)}</div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:12px">
+          <div style="opacity:.6;font-size:.8rem">🏦 Bank</div>
+          <div style="font-size:1.1rem;font-weight:600;color:${bankBal>=0?'var(--green)':'var(--terra)'}">${rp(bankBal)}</div>
+        </div>
+      </div>
     </div>
-    ${tExpModule>0?`<div style="margin-top:10px"><div style="font-size:9px;font-weight:700;color:var(--cream4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Detail Pengeluaran Operasional</div>
-    ${Object.entries(expModMap).sort((a,b)=>b[1]-a[1]).map(([tj,amt])=>`<div class="pnl-row"><span class="pnl-lbl">${escHtml(tj)}</span><span class="pnl-val" style="color:var(--terra)">(${rp(amt)})</span></div>`).join('')}
-    </div>`:''}
-    ${tStaffCost>0?`<div style="margin-top:10px"><div style="font-size:9px;font-weight:700;color:var(--cream4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Detail Staff Cost</div>
-    ${(DB.staffCost||[]).filter(s=>s.month===mo).sort((a,b)=>a.week-b.week).map(s=>`<div class="pnl-row"><span class="pnl-lbl">Minggu ke-${s.week}${s.note?' — '+escHtml(s.note):''}</span><span class="pnl-val" style="color:var(--terra)">(${rp(s.amount)})</span></div>`).join('')}
-    </div>`:''}`;
-}
-
-// ══════════════ INPUT PENGELUARAN ══════════════
-let _editExpenseId = null;
-
-function openExpenseModal(id) {
-  if(currentRole!=='admin'&&currentRole!=='finance'){showToast('⛔ Hanya admin/finance');return;}
-  const ex = id ? (DB.expenses||[]).find(e=>e.id===id) : null;
-  _editExpenseId = id||null;
-  g('m-expense-title').textContent = ex ? 'Edit Pengeluaran — '+fmtDate(ex.date) : 'Tambah Pengeluaran';
-  g('expense-edit-id').value = id||'';
-  g('exp-date').value = ex?.date||today();
-  g('exp-nominal').value = ex?.nominal||'';
-  g('exp-tujuan').value = ex?.tujuan||'';
-  g('exp-vendor').value = ex?.vendor||'';
-  g('exp-sumber').value = ex?.sumber||'';
-  g('exp-ket').value = ex?.ket||'';
-  g('btn-del-expense').style.display = ex ? 'inline-flex' : 'none';
-  openMod('m-expense');
-}
-function saveExpenseEntry() {
-  if(currentRole!=='admin'&&currentRole!=='finance'){showToast('⛔ Hanya admin/finance');return;}
-  const date=g('exp-date').value; if(!date){showToast('⚠ Pilih tanggal');return;}
-  const nominal=parseFloat(g('exp-nominal').value)||0; if(!nominal){showToast('⚠ Isi nominal');return;}
-  const tujuan=(g('exp-tujuan').value||'').trim(); if(!tujuan){showToast('⚠ Isi tujuan pengeluaran');return;}
-  const vendor=(g('exp-vendor').value||'').trim(); if(!vendor){showToast('⚠ Isi nama vendor');return;}
-  const sumber=g('exp-sumber').value; if(!sumber){showToast('⚠ Pilih sumber dana');return;}
-  const ket=(g('exp-ket').value||'').trim();
-  if(!DB.expenses) DB.expenses=[];
-  if(_editExpenseId) {
-    const i=DB.expenses.findIndex(e=>e.id===_editExpenseId);
-    if(i>=0) DB.expenses[i]={...DB.expenses[i],date,nominal,tujuan,vendor,sumber,ket,by:currentUser,ts:Date.now()};
-  } else {
-    DB.expenses.push({id:uid(),date,nominal,tujuan,vendor,sumber,ket,by:currentUser,ts:Date.now()});
-  }
-  DB.expenses.sort((a,b)=>b.date.localeCompare(a.date));
-  syncBankLedgerFromExpenses();
-  closeMod('m-expense'); pushFB(); showToast('✓ Pengeluaran disimpan'); renderExpenseList();
-}
-function deleteExpenseEntry() {
-  if(!confirm('Hapus data pengeluaran ini?'))return;
-  DB.expenses=(DB.expenses||[]).filter(e=>e.id!==_editExpenseId);
-  syncBankLedgerFromExpenses();
-  _editExpenseId=null; closeMod('m-expense'); pushFB(); showToast('🗑 Dihapus'); renderExpenseList();
-}
-function setExpRange(mode) {
-  const now=new Date(), fmt=d=>d.toISOString().slice(0,10);
-  let from='',to=fmt(now);
-  if(mode==='mtd') from=fmt(new Date(now.getFullYear(),now.getMonth(),1));
-  else if(mode==='7d'){const d=new Date(now);d.setDate(d.getDate()-6);from=fmt(d);}
-  const f=g('exp-from'),t=g('exp-to'); if(f)f.value=from; if(t)t.value=to; renderExpenseList();
-}
-function renderExpenseList() {
-  const from=g('exp-from')?.value||'', to=g('exp-to')?.value||'';
-  const filterSumber=g('exp-filter-sumber')?.value||'';
-  const list=(DB.expenses||[]).filter(e=>{
-    if(from&&e.date<from) return false;
-    if(to&&e.date>to) return false;
-    if(filterSumber&&e.sumber!==filterSumber) return false;
-    return true;
-  }).sort((a,b)=>b.date.localeCompare(a.date));
-  const tTotal=list.reduce((s,e)=>s+(e.nominal||0),0);
-  const tCash=list.filter(e=>e.sumber==='cash').reduce((s,e)=>s+(e.nominal||0),0);
-  const tTransfer=list.filter(e=>e.sumber==='transfer').reduce((s,e)=>s+(e.nominal||0),0);
-  g('exp-kpi').innerHTML=[
-    {label:'Total Pengeluaran',val:rpK(tTotal),sub:list.length+' transaksi',cls:'terra'},
-    {label:'Cash',val:rpK(tCash),sub:tTotal?(tCash/tTotal*100).toFixed(0)+'%':'—',cls:'amber'},
-    {label:'Transfer Rekening',val:rpK(tTransfer),sub:tTotal?(tTransfer/tTotal*100).toFixed(0)+'%':'—',cls:'blue'},
-    {label:'Rata-rata / Transaksi',val:rpK(list.length?tTotal/list.length:0),sub:'per entry',cls:''},
-  ].map(k=>`<div class="kpi ${k.cls}"><div class="kpi-label">${k.label}</div><div class="kpi-val">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>`).join('');
-  const sumberLabel={cash:'💵 Cash',transfer:'🏦 Transfer Rekening'};
-  g('exp-tbody').innerHTML=list.map(e=>`<tr>
-    <td style="white-space:nowrap;font-family:var(--fm)">${fmtDate(e.date)}</td>
-    <td>${escHtml(e.tujuan)}${e.ket?`<div style="font-size:10px;color:var(--cream4)">${escHtml(e.ket)}</div>`:''}</td>
-    <td style="font-size:11px">${escHtml(e.vendor)}</td>
-    <td><span style="font-size:10px;padding:2px 7px;border-radius:4px;background:${e.sumber==='cash'?'rgba(196,168,79,.15)':'rgba(100,149,237,.15)'};color:${e.sumber==='cash'?'var(--gold)':'#6495ed'}">${sumberLabel[e.sumber]||e.sumber}</span></td>
-    <td class="r" style="font-family:var(--fm);font-weight:600;color:var(--terra)">${rp(e.nominal)}</td>
-    <td style="font-size:10px;color:var(--cream4)">${escHtml(e.by||'—')}</td>
-    <td><button class="btn btn-ghost btn-sm" onclick="openExpenseModal('${e.id}')">✏</button></td>
-  </tr>`).join('')||'<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--cream4)">Belum ada data pengeluaran</td></tr>';
-  const footer=g('exp-total-footer'); if(footer) footer.textContent=rp(tTotal);
-}
-
-// ══════════════ STAFF COST ══════════════
-let _editScId = null;
-
-function openStaffCostModal(id) {
-  if(currentRole!=='admin'&&currentRole!=='finance'){showToast('⛔ Hanya admin/finance');return;}
-  const ex = id ? (DB.staffCost||[]).find(s=>s.id===id) : null;
-  _editScId = id||null;
-  g('m-sc-title').textContent = ex ? 'Edit Staff Cost' : 'Input Staff Cost';
-  g('sc-edit-id').value = id||'';
-  const mo=g('sc-month')?.value||thisMonth();
-  g('sc-month-input').value = ex?.month||mo;
-  g('sc-week').value = ex?.week||'1';
-  g('sc-amount').value = ex?.amount||'';
-  g('sc-note').value = ex?.note||'';
-  g('btn-del-sc').style.display = ex ? 'inline-flex' : 'none';
-  openMod('m-staff-cost');
-}
-function saveStaffCostEntry() {
-  if(currentRole!=='admin'&&currentRole!=='finance'){showToast('⛔ Hanya admin/finance');return;}
-  const month=g('sc-month-input').value; if(!month){showToast('⚠ Pilih bulan');return;}
-  const week=parseInt(g('sc-week').value); if(!week){showToast('⚠ Pilih minggu');return;}
-  const amount=parseFloat(g('sc-amount').value)||0; if(!amount){showToast('⚠ Isi nominal');return;}
-  const note=(g('sc-note').value||'').trim();
-  const year=parseInt(month.slice(0,4));
-  if(!DB.staffCost) DB.staffCost=[];
-  const dupIdx=DB.staffCost.findIndex(s=>s.month===month&&s.week===week&&s.id!==_editScId);
-  if(dupIdx>=0){if(!confirm(`Sudah ada data Staff Cost minggu ke-${week} bulan ${shortMonth(month)}. Timpa data lama?`))return; DB.staffCost.splice(dupIdx,1);}
-  if(_editScId) {
-    const i=DB.staffCost.findIndex(s=>s.id===_editScId);
-    if(i>=0) DB.staffCost[i]={...DB.staffCost[i],month,week,year,amount,note,by:currentUser,ts:Date.now()};
-  } else {
-    DB.staffCost.push({id:uid(),month,week,year,amount,note,by:currentUser,ts:Date.now()});
-  }
-  DB.staffCost.sort((a,b)=>a.month===b.month?a.week-b.week:a.month.localeCompare(b.month));
-  closeMod('m-staff-cost'); pushFB(); showToast('✓ Staff cost disimpan'); renderStaffCostList();
-}
-function deleteStaffCostEntry() {
-  if(!confirm('Hapus data staff cost ini?'))return;
-  DB.staffCost=(DB.staffCost||[]).filter(s=>s.id!==_editScId);
-  _editScId=null; closeMod('m-staff-cost'); pushFB(); showToast('🗑 Dihapus'); renderStaffCostList();
-}
-function renderStaffCostList() {
-  const mo=g('sc-month')?.value||thisMonth();
-  const list=(DB.staffCost||[]).filter(s=>s.month===mo).sort((a,b)=>a.week-b.week);
-  const tMonth=list.reduce((s,e)=>s+(e.amount||0),0);
-  const yr=mo.slice(0,4);
-  const tYear=(DB.staffCost||[]).filter(s=>s.month?.startsWith(yr)).reduce((s,e)=>s+(e.amount||0),0);
-  const weeksFilled=list.length;
-  g('sc-kpi').innerHTML=[
-    {label:'Total '+shortMonth(mo),val:rpK(tMonth),sub:weeksFilled+' minggu diisi',cls:'terra'},
-    {label:'Rata-rata / Minggu',val:rpK(weeksFilled?tMonth/weeksFilled:0),sub:'bulan ini',cls:'amber'},
-    {label:'Total YTD '+yr,val:rpK(tYear),sub:'year to date',cls:''},
-  ].map(k=>`<div class="kpi ${k.cls}"><div class="kpi-label">${k.label}</div><div class="kpi-val">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>`).join('');
-  const wkLabel=['','Minggu 1 (1–7)','Minggu 2 (8–14)','Minggu 3 (15–21)','Minggu 4 (22–28)','Minggu 5 (29–31)'];
-  g('sc-tbody').innerHTML=list.map(s=>`<tr>
-    <td style="white-space:nowrap;font-family:var(--fm)">${shortMonth(s.month)}</td>
-    <td>${wkLabel[s.week]||'Minggu '+s.week}</td>
-    <td style="font-size:11px;color:var(--cream4)">${escHtml(s.note||'—')}</td>
-    <td class="r" style="font-family:var(--fm);font-weight:600;color:var(--terra)">${rp(s.amount)}</td>
-    <td style="font-size:10px;color:var(--cream4)">${escHtml(s.by||'—')}</td>
-    <td><button class="btn btn-ghost btn-sm" onclick="openStaffCostModal('${s.id}')">✏</button></td>
-  </tr>`).join('')||'<tr><td colspan="6" style="text-align:center;padding:20px;color:var(--cream4)">Belum ada data staff cost bulan ini</td></tr>';
-  const footer=g('sc-total-footer'); if(footer) footer.textContent=rp(tMonth);
-}
-
-// ══════════════ REKENING BANK ══════════════
-let _editBankInId = null;
-
-function openBankInModal(id) {
-  if(currentRole!=='admin'&&currentRole!=='finance'){showToast('⛔ Hanya admin/finance');return;}
-  const ex = id ? (DB.bankLedger||[]).find(e=>e.id===id&&e.type==='in') : null;
-  _editBankInId = id||null;
-  g('m-bank-in-title').textContent = ex ? 'Edit Uang Masuk' : 'Input Uang Masuk';
-  g('bl-edit-id').value = id||'';
-  g('bl-date').value = ex?.date||today();
-  g('bl-amount').value = ex?.amount||'';
-  g('bl-desc').value = ex?.desc||'';
-  g('btn-del-bank-in').style.display = ex ? 'inline-flex' : 'none';
-  openMod('m-bank-in');
-}
-function saveBankIn() {
-  if(currentRole!=='admin'&&currentRole!=='finance'){showToast('⛔ Hanya admin/finance');return;}
-  const date=g('bl-date').value; if(!date){showToast('⚠ Pilih tanggal');return;}
-  const amount=parseFloat(g('bl-amount').value)||0; if(!amount){showToast('⚠ Isi nominal');return;}
-  const desc=(g('bl-desc').value||'').trim(); if(!desc){showToast('⚠ Isi keterangan');return;}
-  if(!DB.bankLedger) DB.bankLedger=[];
-  if(_editBankInId) {
-    const i=DB.bankLedger.findIndex(e=>e.id===_editBankInId);
-    if(i>=0) DB.bankLedger[i]={...DB.bankLedger[i],date,amount,desc,by:currentUser,ts:Date.now()};
-  } else {
-    DB.bankLedger.push({id:uid(),date,type:'in',amount,desc,refId:null,by:currentUser,ts:Date.now()});
-  }
-  DB.bankLedger.sort((a,b)=>a.date.localeCompare(b.date)||a.ts-b.ts);
-  closeMod('m-bank-in'); pushFB(); showToast('✓ Uang masuk disimpan'); renderBankLedger();
-}
-function deleteBankIn() {
-  if(!confirm('Hapus catatan uang masuk ini?'))return;
-  DB.bankLedger=(DB.bankLedger||[]).filter(e=>e.id!==_editBankInId);
-  _editBankInId=null; closeMod('m-bank-in'); pushFB(); showToast('🗑 Dihapus'); renderBankLedger();
-}
-
-// Sync otomatis: dipanggil setiap kali expense disimpan/dihapus
-function syncBankLedgerFromExpenses() {
-  if(!DB.bankLedger) DB.bankLedger=[];
-  // Kumpulkan semua expense sumber=transfer
-  const transferExp=(DB.expenses||[]).filter(e=>e.sumber==='transfer');
-  const existingRefIds=new Set(DB.bankLedger.filter(e=>e.type==='out'&&e.refId).map(e=>e.refId));
-  // Tambah yang belum ada
-  transferExp.forEach(e=>{
-    if(!existingRefIds.has(e.id)){
-      DB.bankLedger.push({id:uid(),date:e.date,type:'out',amount:e.nominal||e.amount||0,desc:e.tujuan+(e.vendor?' — '+e.vendor:''),refId:e.id,by:e.by,ts:e.ts});
-    }
-  });
-  // Hapus 'out' yang refId-nya sudah tidak ada di expenses (expense dihapus)
-  const expIds=new Set(transferExp.map(e=>e.id));
-  DB.bankLedger=DB.bankLedger.filter(e=>!(e.type==='out'&&e.refId&&!expIds.has(e.refId)));
-  // Update 'out' yang datanya berubah (edit expense)
-  DB.bankLedger=DB.bankLedger.map(bl=>{
-    if(bl.type==='out'&&bl.refId){
-      const src=transferExp.find(e=>e.id===bl.refId);
-      if(src) return {...bl,date:src.date,amount:src.nominal||src.amount||0,desc:src.tujuan+(src.vendor?' — '+src.vendor:'')};
-    }
-    return bl;
-  });
-  DB.bankLedger.sort((a,b)=>a.date.localeCompare(b.date)||a.ts-b.ts);
-}
-
-function renderBankLedger() {
-  const mo=g('bl-month')?.value||thisMonth();
-  // Catatan: syncBankLedgerFromExpenses() TIDAK dipanggil di sini untuk menghindari
-  // duplikasi data — sync hanya terjadi saat expense disimpan/dihapus.
-  // Hitung saldo pembuka (semua entri sebelum bulan ini)
-  const allSorted=(DB.bankLedger||[]).slice().sort((a,b)=>a.date.localeCompare(b.date)||a.ts-b.ts);
-  const moStart=mo+'-01';
-  let openingBalance=0;
-  allSorted.filter(e=>e.date<moStart).forEach(e=>{
-    openingBalance += e.type==='in' ? (e.amount||0) : -(e.amount||0);
-  });
-  // Entri bulan ini
-  const list=allSorted.filter(e=>e.date>=moStart&&e.date<=(mo+'-31'));
-  const tIn=list.filter(e=>e.type==='in').reduce((s,e)=>s+(e.amount||0),0);
-  const tOut=list.filter(e=>e.type==='out').reduce((s,e)=>s+(e.amount||0),0);
-  const netChange=tIn-tOut;
-  const closingBalance=openingBalance+netChange;
-  // KPI cards
-  g('bl-kpi').innerHTML=[
-    {label:'Saldo Awal Bulan',val:rpK(openingBalance),sub:shortMonth(mo),cls:openingBalance>=0?'':'red'},
-    {label:'Total Masuk',val:rpK(tIn),sub:list.filter(e=>e.type==='in').length+' transaksi',cls:'green'},
-    {label:'Total Keluar',val:rpK(tOut),sub:list.filter(e=>e.type==='out').length+' transaksi',cls:'terra'},
-    {label:'Saldo Akhir',val:rpK(closingBalance),sub:'estimasi saat ini',cls:closingBalance>=0?'gold':'red'},
-  ].map(k=>`<div class="kpi ${k.cls}"><div class="kpi-label">${k.label}</div><div class="kpi-val">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>`).join('');
-  // Tabel dengan running balance
-  let running=openingBalance;
-  // Baris saldo awal
-  let rows=`<tr style="opacity:.6"><td style="font-family:var(--fm)">${moStart.slice(0,7)}-01 (awal)</td><td style="color:var(--cream4);font-style:italic">Saldo awal bulan</td><td>—</td><td class="r">—</td><td class="r">—</td><td class="r" style="font-family:var(--fm);font-weight:600;color:${running>=0?'var(--gold)':'var(--red)'}">${rp(running)}</td><td>—</td><td></td></tr>`;
-  if(list.length===0){
-    rows+='<tr><td colspan="8" style="text-align:center;padding:20px;color:var(--cream4)">Belum ada mutasi bulan ini</td></tr>';
-  } else {
-    rows+=list.map(e=>{
-      running += e.type==='in' ? (e.amount||0) : -(e.amount||0);
-      const isOut=e.type==='out';
-      const isAutoOut=isOut&&e.refId;
-      return `<tr>
-        <td style="white-space:nowrap;font-family:var(--fm)">${fmtDate(e.date)}</td>
-        <td>${escHtml(e.desc||'—')}${isAutoOut?`<span style="font-size:9px;margin-left:5px;padding:1px 5px;border-radius:3px;background:rgba(100,149,237,.12);color:#6495ed">auto</span>`:''}</td>
-        <td><span style="font-size:10px;padding:2px 7px;border-radius:4px;background:${isOut?'rgba(196,98,45,.15)':'rgba(90,158,111,.15)'};color:${isOut?'var(--terra)':'var(--green)'}">${isOut?'⬇ Keluar':'⬆ Masuk'}</span></td>
-        <td class="r" style="font-family:var(--fm);font-weight:600;color:var(--green)">${isOut?'—':rp(e.amount)}</td>
-        <td class="r" style="font-family:var(--fm);font-weight:600;color:var(--terra)">${isOut?rp(e.amount):'—'}</td>
-        <td class="r" style="font-family:var(--fm);font-weight:600;color:${running>=0?'var(--gold)':'var(--red)'}">${rp(running)}</td>
-        <td style="font-size:10px;color:var(--cream4)">${escHtml(e.by||'—')}</td>
-        <td>${!isAutoOut?`<button class="btn btn-ghost btn-sm" onclick="openBankInModal('${e.id}')">✏</button>`:''}</td>
-      </tr>`;
-    }).join('');
-  }
-  g('bl-tbody').innerHTML=rows;
-  const fi=g('bl-total-in'); if(fi) fi.textContent=rp(tIn);
-  const fo=g('bl-total-out'); if(fo) fo.textContent=rp(tOut);
-  const fs=g('bl-saldo-akhir'); if(fs){fs.textContent=rp(closingBalance);fs.style.color=closingBalance>=0?'var(--gold)':'var(--red)';}
+    <div class="fin-summary-card" style="margin-top:16px">
+      <div style="font-weight:600;margin-bottom:12px;font-size:1.05rem">📅 Bulan Ini — ${mo}</div>
+      <div class="fin-total-row"><span>Cash Masuk</span><span style="color:var(--green)">+${rp(cashIn)}</span></div>
+      <div class="fin-total-row"><span>Cash Keluar</span><span style="color:var(--terra)">-${rp(cashOut)}</span></div>
+      <div class="fin-total-row" style="border-top:1px solid rgba(255,255,255,.1);margin-top:8px;padding-top:8px"><span style="font-weight:600">Net Cash</span><span style="font-weight:600;color:${(cashIn-cashOut)>=0?'var(--green)':'var(--terra)'}">${(cashIn-cashOut)>=0?'+':''} ${rp(cashIn-cashOut)}</span></div>
+      <div class="fin-total-row" style="margin-top:16px"><span>Bank Masuk</span><span style="color:var(--green)">+${rp(bankIn)}</span></div>
+      <div class="fin-total-row"><span>Bank Keluar</span><span style="color:var(--terra)">-${rp(bankOut)}</span></div>
+      <div class="fin-total-row" style="border-top:1px solid rgba(255,255,255,.1);margin-top:8px;padding-top:8px"><span style="font-weight:600">Net Bank</span><span style="font-weight:600;color:${(bankIn-bankOut)>=0?'var(--green)':'var(--terra)'}">${(bankIn-bankOut)>=0?'+':''} ${rp(bankIn-bankOut)}</span></div>
+    </div>
+    <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn-secondary" onclick="nav(document.querySelector('[data-page=cash-ledger]'))">💵 Lihat Cash Ledger</button>
+      <button class="btn-secondary" onclick="nav(document.querySelector('[data-page=bank-ledger]'))">🏦 Lihat Bank Ledger</button>
+    </div>`;
 }
 
 // ══════════════ SALES: PERFORMANCE ══════════════
@@ -3070,18 +2928,16 @@ document.addEventListener('click',e=>{if(e.target.classList.contains('mbg'))e.ta
 function showToast(msg,dur=3000){const t=g('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur);}
 
 // ══════════════ FIREBASE ══════════════
-let fbDb,fbRef,fbPoRef,fbReady=false,fbLastWriteTs=0,fbTimer=null;
+let fbDb,fbRef,fbPoRef,fbReady=false,fbWriting=false,fbTimer=null;
 function setFbSt(msg,c){const el=g('fb-status');if(!el)return;el.textContent=msg;el.style.color=c==='green'?'var(--green)':c==='red'?'var(--red)':'var(--cream4)';}
 function pushFB(){
   if(!fbReady||!fbRef)return;
   clearTimeout(fbTimer);
   fbTimer=setTimeout(()=>{
-    const writeTs=Date.now();
-    fbLastWriteTs=writeTs;
-    setFbSt('⟳ Menyimpan...','amber');
-    fbRef.set({...DB,_ts:writeTs})
-      .then(()=>{setFbSt('● Tersimpan','green');})
-      .catch(e=>{setFbSt('✕ '+e.code,'red');console.error('pushFB error',e);});
+    fbWriting=true; setFbSt('⟳ Menyimpan...','amber');
+    fbRef.set({...DB,_ts:Date.now()})
+      .then(()=>{setFbSt('● Tersimpan','green');setTimeout(()=>{fbWriting=false;},2000);})
+      .catch(e=>{setFbSt('✕ '+e.code,'red');fbWriting=false;});
   },1200);
 }
 function initFB(){
@@ -3113,9 +2969,8 @@ function initFB(){
           }
         });
         fbRef.on('value',snap=>{
+          if(fbWriting)return;
           const data=snap.val();
-          // Abaikan echo dari tulisan kita sendiri (dalam 5 detik terakhir)
-          if(data&&data._ts&&(Date.now()-data._ts)<5000&&data._ts===fbLastWriteTs)return;
           if(data){
             ['karyawan','dokumen','absensi','sop_umum','sop_divisi','sales','briefing','outlets'].forEach(k=>{if(Array.isArray(data[k]))DB[k]=data[k];});
             if(data.kpi&&typeof data.kpi==='object') DB.kpi=data.kpi;
@@ -3127,8 +2982,7 @@ function initFB(){
             if(data.masterItems&&typeof data.masterItems==='object') DB.masterItems=data.masterItems;
             if(data.clTemplates&&typeof data.clTemplates==='object') DB.clTemplates=data.clTemplates;
             if(Array.isArray(data.kpiCustomDivisions)) DB.kpiCustomDivisions=data.kpiCustomDivisions;
-            if(Array.isArray(data.expenses)) DB.expenses=data.expenses;
-            if(Array.isArray(data.staffCost)) DB.staffCost=data.staffCost;
+            if(Array.isArray(data.cashLedger)) DB.cashLedger=data.cashLedger;
             if(Array.isArray(data.bankLedger)) DB.bankLedger=data.bankLedger;
           }
           if(currentRole) repopulateSelects();
@@ -4932,21 +4786,6 @@ function invPeriodDateRange(period,dateStr){
 
 function invCalcPenggunaan(rec){return(rec.stokAwal||0)+(rec.stockIn||0)-(rec.spoil||0)-(rec.transfer||0)-(rec.sisaStokAkhir||0)}
 
-// Cari data hari terakhir sebelum tanggal yang dipilih (mundur maks 60 hari)
-// Mengembalikan {dateStr, data} atau null jika tidak ada
-function invGetPrevDayData(outlet, divisi, dateStr){
-  const divData = DB.inventory?.[outlet]?.[divisi];
-  if(!divData) return null;
-  const targetDk = invDateKey(dateStr);
-  // Kumpulkan semua dk yang ada dan lebih kecil dari target
-  const keys = Object.keys(divData).filter(k => k < targetDk).sort();
-  if(!keys.length) return null;
-  const prevDk = keys[keys.length - 1]; // hari terdekat sebelum target
-  // Format balik ke dateStr: YYYYMMDD → YYYY-MM-DD
-  const prevDateStr = prevDk.slice(0,4)+'-'+prevDk.slice(4,6)+'-'+prevDk.slice(6,8);
-  return { dateStr: prevDateStr, data: divData[prevDk] };
-}
-
 function invPopulateSelects(){
   ['inv-dash-outlet','inv-input-outlet','inv-trace-outlet'].forEach(id=>{
     const el=g(id);if(!el)return;
@@ -5012,13 +4851,25 @@ function renderInvDashboard(){
   const totalNilaiStokGlobal=(nilaiStok.BAR||0)+(nilaiStok.KITCHEN||0)+(nilaiStok.FLOOR||0);
   const periodLabel={'month':'Bulan Ini','week':'Minggu Ini','day':'Hari Ini'}[period]||period;
 
+  // Spoil value for period (sum spoil × harga per item, filtered to date range)
+  let totalSpoilValue=0;
+  divs.forEach(div=>{
+    const root=(DB.inventory?.[outlet]?.[div])||{};
+    Object.entries(root).forEach(([dk,dayData])=>{
+      const dStr=dk.slice(0,4)+'-'+dk.slice(4,6)+'-'+dk.slice(6,8);
+      if(dStr<from||dStr>to)return;
+      Object.values(dayData).forEach(rec=>{totalSpoilValue+=(rec.spoil||0)*(rec.harga||0);});
+    });
+  });
+
   // Stat tiles
   g('inv-dash-stats').innerHTML=`
     <div class="inv-stat-tile"><div class="inv-stat-label">Outlet</div><div class="inv-stat-val" style="font-size:13px">${outlet||'-'}</div><div class="inv-stat-sub">${periodLabel}</div></div>
     <div class="inv-stat-tile"><div class="inv-stat-label">Total Item</div><div class="inv-stat-val">${totalItems}</div><div class="inv-stat-sub">${divFilter==='ALL'?'Semua divisi':divFilter}</div></div>
     <div class="inv-stat-tile"><div class="inv-stat-label">Total Penggunaan</div><div class="inv-stat-val">${totalP.toLocaleString('id')}</div><div class="inv-stat-sub">unit terkonsumsi</div></div>
     <div class="inv-stat-tile"><div class="inv-stat-label">Nilai Penggunaan</div><div class="inv-stat-val">${rpK(totalNilaiPenggunaan)}</div><div class="inv-stat-sub">est. cost periode ini</div></div>
-    <div class="inv-stat-tile inv-stat-tile--gold"><div class="inv-stat-label">💰 Total Nilai Stok</div><div class="inv-stat-val">${rpK(totalNilaiStokGlobal)}</div><div class="inv-stat-sub">sisa stok × harga satuan</div></div>`;
+    <div class="inv-stat-tile inv-stat-tile--gold"><div class="inv-stat-label">💰 Total Nilai Stok</div><div class="inv-stat-val">${rpK(totalNilaiStokGlobal)}</div><div class="inv-stat-sub">sisa stok × harga satuan</div></div>
+    <div class="inv-stat-tile" style="border-top:3px solid var(--terra)"><div class="inv-stat-label">🗑️ Nilai Spoil</div><div class="inv-stat-val" style="color:var(--terra)">${rpK(totalSpoilValue)}</div><div class="inv-stat-sub">spoil × harga satuan</div></div>`;
 
   // Section Nilai Stok per Divisi
   const divColors={BAR:'var(--gold)',KITCHEN:'var(--blue)',FLOOR:'var(--green)'};
@@ -5084,40 +4935,14 @@ function renderInvInputTable(){
   const isAdmin=currentRole==='admin';
   const masterItems=masterGetItems(divisi)||[];
   const dayData=(DB.inventory?.[outlet]?.[divisi]?.[dk])||{};
-  const isNewDay=!Object.keys(dayData).length; // belum ada data untuk tanggal ini
-
-  // Auto carry-over: ambil sisa akhir hari sebelumnya sebagai stok awal
-  let carryOverInfo = null;
-  let prevDayData = {};
-  if(isNewDay){
-    const prev = invGetPrevDayData(outlet, divisi, dateStr);
-    if(prev){
-      carryOverInfo = prev.dateStr;
-      prevDayData = prev.data;
-    }
-  }
-
   g('inv-input-sub').textContent=`${outlet} · ${divisi} · ${dateStr}`;
   if(!masterItems.length){g('inv-input-table').innerHTML='<div style="color:var(--text3);font-size:12px;padding:20px 0">Tidak ada item master untuk divisi ini.</div>';return;}
-
   const rows=masterItems.map(it=>{
-    let rec;
-    if(dayData[it.name]){
-      // Data hari ini sudah ada → pakai apa adanya
-      rec = dayData[it.name];
-    } else if(carryOverInfo && prevDayData[it.name]){
-      // Hari baru + ada data kemarin → carry-over sisaStokAkhir sebagai stokAwal
-      const prev = prevDayData[it.name];
-      rec = {stokAwal:prev.sisaStokAkhir||0, stockIn:0, spoil:0, transfer:0, sisaStokAkhir:0, harga:prev.harga||it.cost||0};
-    } else {
-      rec = {stokAwal:0, stockIn:0, spoil:0, transfer:0, sisaStokAkhir:0, harga:it.cost||0};
-    }
+    const rec=dayData[it.name]||{stokAwal:0,stockIn:0,spoil:0,transfer:0,sisaStokAkhir:0,harga:it.cost||0};
     const peng=invCalcPenggunaan(rec);
     const nilaiAkhir=(rec.sisaStokAkhir||0)*(rec.harga||it.cost||0);
     const iid=it.name.replace(/[^a-zA-Z0-9]/g,'_');
-    // Tandai baris carry-over dengan warna subtle agar staff tahu ini otomatis
-    const isCarryRow = isNewDay && carryOverInfo && (prevDayData[it.name]?.sisaStokAkhir||0)>0;
-    return`<tr id="inv-row-${iid}" ${isCarryRow?'style="background:rgba(196,168,79,.06)"':''}>
+    return`<tr id="inv-row-${iid}">
       <td style="font-weight:500;white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis">${it.name}</td>
       <td class="inv-price">${it.category}</td>
       <td><input type="number" id="inv-sa-${iid}" value="${rec.stokAwal}" min="0" oninput="invUpdateRow('${it.name.replace(/'/g,"\\'")}','${iid}','${outlet}','${divisi}','${dk}')"></td>
@@ -5130,22 +4955,12 @@ function renderInvInputTable(){
       <td><span class="inv-nilai-akhir" id="inv-na-${iid}" style="font-family:var(--fm);font-size:10px;color:var(--gold);white-space:nowrap">${rpK(nilaiAkhir)}</span></td>
     </tr>`;
   }).join('');
-
-  // Banner info carry-over
-  const carryBanner = carryOverInfo
-    ? `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;margin-bottom:8px;border-radius:8px;background:rgba(196,168,79,.12);border:1px solid rgba(196,168,79,.25);font-size:12px;color:var(--gold)">
-        <span>📦</span>
-        <span><b>Auto Carry-Over:</b> Stok Awal diisi otomatis dari <b>Sisa Akhir ${carryOverInfo}</b>. Periksa dan sesuaikan jika ada perubahan.</span>
-      </div>`
-    : '';
-
   // Footer total nilai akhir
   const totalNilaiAkhir=masterItems.reduce((s,it)=>{
     const rec=dayData[it.name]||{sisaStokAkhir:0,harga:it.cost||0};
     return s+(rec.sisaStokAkhir||0)*(rec.harga||it.cost||0);
   },0);
-
-  g('inv-input-table').innerHTML=carryBanner+`<div style="overflow-x:auto"><table class="inv-tbl"><thead><tr>
+  g('inv-input-table').innerHTML=`<div style="overflow-x:auto"><table class="inv-tbl"><thead><tr>
     <th>Nama Item</th><th>Kategori</th><th style="text-align:right">Stok Awal</th><th style="text-align:right">Stock IN</th>
     <th style="text-align:right">Spoil</th><th style="text-align:right">Transfer Keluar</th><th style="text-align:right">Sisa Akhir</th>
     <th style="text-align:right;color:var(--gold)">Penggunaan</th><th style="text-align:right">Harga/unit</th>
@@ -5255,13 +5070,9 @@ function invInit(){
 let _masterCurrentDiv = 'BAR';
 
 // Pastikan DB.masterItems ada; jika belum, copy dari PO_MASTER_ITEMS (seed sekali)
-// PENTING: Hanya seed jika Firebase SUDAH ready (fbReady=true) agar tidak
-// menimpa data custom yang belum sempat di-restore dari Firebase.
 function masterInit(){
   if(!DB.masterItems||typeof DB.masterItems!=='object'||!Object.keys(DB.masterItems).length){
-    // Jika Firebase belum ready, jangan seed dulu — data akan datang dari listener
-    if(!fbReady) return;
-    // Seed dari konstanta bawaan (hanya saat Firebase sudah load & memang kosong)
+    // Seed dari konstanta bawaan
     DB.masterItems={
       BAR: (typeof PO_MASTER_ITEMS!=='undefined'&&PO_MASTER_ITEMS.BAR)?PO_MASTER_ITEMS.BAR.map(it=>({...it,_src:'default'})):[],
       KITCHEN: (typeof PO_MASTER_ITEMS!=='undefined'&&PO_MASTER_ITEMS.KITCHEN)?PO_MASTER_ITEMS.KITCHEN.map(it=>({...it,_src:'default'})):[],
