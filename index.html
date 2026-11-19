@@ -1233,6 +1233,44 @@ textarea{resize:vertical;line-height:1.5}
 </div>
 
 
+<!-- ══════════════ CASH LEDGER PAGE ══════════════ -->
+<div class="page" id="page-cash-ledger">
+  <div class="topbar"><div><div class="topbar-title">💵 Cash Ledger</div><div class="topbar-sub">Pencatatan keluar masuk uang tunai</div></div>
+    <button class="btn btn-gold btn-sm" onclick="openLedgerModal('cash')">+ Transaksi</button></div>
+  <div class="scroll">
+    <div class="ledger-balance">
+      <div><div class="ledger-bal-label">Saldo Cash</div><div class="ledger-bal-val" id="cash-saldo">Rp 0</div></div>
+      <div style="text-align:right"><div class="ledger-bal-label">Total Masuk</div><div style="font-size:13px;font-family:var(--fm);color:var(--green)" id="cash-total-in">Rp 0</div>
+      <div class="ledger-bal-label" style="margin-top:4px">Total Keluar</div><div style="font-size:13px;font-family:var(--fm);color:var(--terra)" id="cash-total-out">Rp 0</div></div>
+    </div>
+    <div style="overflow-x:auto"><table class="ledger-tbl"><thead><tr>
+      <th>Tanggal</th><th>Keterangan</th><th>Tipe</th><th style="text-align:right">Debit (Masuk)</th><th style="text-align:right">Kredit (Keluar)</th><th style="text-align:right">Saldo</th><th></th>
+    </tr></thead><tbody id="cash-ledger-body"></tbody></table></div>
+  </div>
+</div>
+
+<!-- ══════════════ BANK LEDGER PAGE ══════════════ -->
+<div class="page" id="page-bank-ledger">
+  <div class="topbar"><div><div class="topbar-title">🏦 Bank Ledger</div><div class="topbar-sub">Pencatatan keluar masuk rekening bank</div></div>
+    <button class="btn btn-gold btn-sm" onclick="openLedgerModal('bank')">+ Transaksi</button></div>
+  <div class="scroll">
+    <div class="ledger-balance">
+      <div><div class="ledger-bal-label">Saldo Bank</div><div class="ledger-bal-val" id="bank-saldo">Rp 0</div></div>
+      <div style="text-align:right"><div class="ledger-bal-label">Total Masuk</div><div style="font-size:13px;font-family:var(--fm);color:var(--green)" id="bank-total-in">Rp 0</div>
+      <div class="ledger-bal-label" style="margin-top:4px">Total Keluar</div><div style="font-size:13px;font-family:var(--fm);color:var(--terra)" id="bank-total-out">Rp 0</div></div>
+    </div>
+    <div style="overflow-x:auto"><table class="ledger-tbl"><thead><tr>
+      <th>Tanggal</th><th>Keterangan</th><th>Tipe</th><th>Bank/Rek</th><th style="text-align:right">Debit (Masuk)</th><th style="text-align:right">Kredit (Keluar)</th><th style="text-align:right">Saldo</th><th></th>
+    </tr></thead><tbody id="bank-ledger-body"></tbody></table></div>
+  </div>
+</div>
+
+<!-- ══════════════ FINANCE SUMMARY PAGE ══════════════ -->
+<div class="page" id="page-finance-summary">
+  <div class="topbar"><div><div class="topbar-title">📋 Ringkasan Keuangan</div><div class="topbar-sub">Posisi Cash &amp; Bank</div></div></div>
+  <div class="scroll" id="finance-summary-content"></div>
+</div>
+
 </div><!-- /main -->
 </div><!-- /app -->
 
@@ -1334,44 +1372,6 @@ textarea{resize:vertical;line-height:1.5}
   <div class="fg"><label>Budget Petty Cash / Bulan (Rp)</label><input id="t-petty" type="number" placeholder="0" style="width:100%"></div>
   <div class="mf"><button class="btn btn-ghost" onclick="closeMod('m-target')">Batal</button><button class="btn btn-gold" onclick="saveTarget()">💾 Simpan</button></div>
 </div></div>
-
-<!-- ══════════════ CASH LEDGER PAGE ══════════════ -->
-<div class="page" id="page-cash-ledger">
-  <div class="topbar"><div><div class="topbar-title">💵 Cash Ledger</div><div class="topbar-sub">Pencatatan keluar masuk uang tunai</div></div>
-    <button class="btn btn-gold btn-sm" onclick="openLedgerModal('cash')">+ Transaksi</button></div>
-  <div class="scroll">
-    <div class="ledger-balance">
-      <div><div class="ledger-bal-label">Saldo Cash</div><div class="ledger-bal-val" id="cash-saldo">Rp 0</div></div>
-      <div style="text-align:right"><div class="ledger-bal-label">Total Masuk</div><div style="font-size:13px;font-family:var(--fm);color:var(--green)" id="cash-total-in">Rp 0</div>
-      <div class="ledger-bal-label" style="margin-top:4px">Total Keluar</div><div style="font-size:13px;font-family:var(--fm);color:var(--terra)" id="cash-total-out">Rp 0</div></div>
-    </div>
-    <div style="overflow-x:auto"><table class="ledger-tbl"><thead><tr>
-      <th>Tanggal</th><th>Keterangan</th><th>Tipe</th><th style="text-align:right">Debit (Masuk)</th><th style="text-align:right">Kredit (Keluar)</th><th style="text-align:right">Saldo</th><th></th>
-    </tr></thead><tbody id="cash-ledger-body"></tbody></table></div>
-  </div>
-</div>
-
-<!-- ══════════════ BANK LEDGER PAGE ══════════════ -->
-<div class="page" id="page-bank-ledger">
-  <div class="topbar"><div><div class="topbar-title">🏦 Bank Ledger</div><div class="topbar-sub">Pencatatan keluar masuk rekening bank</div></div>
-    <button class="btn btn-gold btn-sm" onclick="openLedgerModal('bank')">+ Transaksi</button></div>
-  <div class="scroll">
-    <div class="ledger-balance">
-      <div><div class="ledger-bal-label">Saldo Bank</div><div class="ledger-bal-val" id="bank-saldo">Rp 0</div></div>
-      <div style="text-align:right"><div class="ledger-bal-label">Total Masuk</div><div style="font-size:13px;font-family:var(--fm);color:var(--green)" id="bank-total-in">Rp 0</div>
-      <div class="ledger-bal-label" style="margin-top:4px">Total Keluar</div><div style="font-size:13px;font-family:var(--fm);color:var(--terra)" id="bank-total-out">Rp 0</div></div>
-    </div>
-    <div style="overflow-x:auto"><table class="ledger-tbl"><thead><tr>
-      <th>Tanggal</th><th>Keterangan</th><th>Tipe</th><th>Bank/Rek</th><th style="text-align:right">Debit (Masuk)</th><th style="text-align:right">Kredit (Keluar)</th><th style="text-align:right">Saldo</th><th></th>
-    </tr></thead><tbody id="bank-ledger-body"></tbody></table></div>
-  </div>
-</div>
-
-<!-- ══════════════ FINANCE SUMMARY PAGE ══════════════ -->
-<div class="page" id="page-finance-summary">
-  <div class="topbar"><div><div class="topbar-title">📋 Ringkasan Keuangan</div><div class="topbar-sub">Posisi Cash &amp; Bank</div></div></div>
-  <div class="scroll" id="finance-summary-content"></div>
-</div>
 
 <!-- MODAL: LEDGER TRANSACTION -->
 <div class="mbg" id="m-ledger" onclick="if(event.target===this)closeMod('m-ledger')">
